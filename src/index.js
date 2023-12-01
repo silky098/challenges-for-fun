@@ -44,12 +44,6 @@ function addTheRest(input) {
 console.log(addTheRest(stars));
 
 // // part a
-// const stars = [
-//     "51591twosix4dhsxvgghxq",
-//     "425nine",
-//     "llvmhjtr8nbbhrfone",
-//     // ... other lines as quoted strings
-// ];
 
 // function sumCalibrationValues(documentArray) {
 //     return documentArray.map(line => {
