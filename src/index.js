@@ -1,3 +1,4 @@
+// part b
 import stars from "./stars.js";
 
 const spelledDigits = {
@@ -41,3 +42,22 @@ function addTheRest(input) {
 }
 
 console.log(addTheRest(stars));
+
+// // part a
+// const stars = [
+//     "51591twosix4dhsxvgghxq",
+//     "425nine",
+//     "llvmhjtr8nbbhrfone",
+//     // ... other lines as quoted strings
+// ];
+
+// function sumCalibrationValues(documentArray) {
+//     return documentArray.map(line => {
+//         const firstDigit = line.match(/\d/)?.[0];
+//         const lastDigit = line.match(/\d(?=[^\d]*$)/)?.[0];
+//         return firstDigit && lastDigit ? parseInt(firstDigit + lastDigit, 10) : 0;
+//     }).reduce((acc, val) => acc + val, 0);
+// }
+
+// const totalSum = sumCalibrationValues(stars);
+// console.log(totalSum);
