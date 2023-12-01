@@ -1,11 +1,43 @@
-import hello from "./hello.js";
+import stars from "./stars.js";
 
-function main() {
-  var args = process.argv;
-  if (args[2] && args[2] === "--v") {
-    console.log("Es6CliSkeleton - version 1.0.0");
-  } else {
-    console.log(hello);
-  }
+const spelledDigits = {
+  one: "1",
+  two: "2",
+  three: "3",
+  four: "4",
+  five: "5",
+  six: "6",
+  seven: "7",
+  eight: "8",
+  nine: "9",
+};
+
+function translateSpelled(input) {
+  return input.reduce((sum, line) => {
+    const first = line.match(/\d/)[0];
+    const last = [...line].reverse().join("").match(/\d/)[0];
+    return sum + parseInt(first + last, 10);
+  }, 0);
 }
-main();
+
+function fix(line) {
+  let fixedLine = line.replace(
+    /(one|two|three|four|five|six|seven|eight|nine)/g,
+    (match) => {
+      return spelledDigits[match] + match[match.length - 1];
+    }
+  );
+
+  return fixedLine.replace(
+    /(one|two|three|four|five|six|seven|eight|nine)/g,
+    (match) => {
+      return spelledDigits[match];
+    }
+  );
+}
+
+function addTheRest(input) {
+  return translateSpelled(input.map((line) => fix(line)));
+}
+
+console.log(addTheRest(stars));
