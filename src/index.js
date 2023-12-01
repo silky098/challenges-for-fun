@@ -1,4 +1,4 @@
-import hello from "./hello";
+import hello from "./hello.js";
 
 function main() {
   var args = process.argv;

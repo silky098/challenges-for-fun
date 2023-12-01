@@ -1,11 +1,13 @@
 {
   "name": "adventofcode",
   "version": "1.0.0",
-  "description": "",
+  "description": "fun stuff",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "start": "node src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -14,8 +16,6 @@
     "@babel/cli": "^7.23.4",
     "@babel/core": "^7.23.5",
     "@babel/preset-env": "^7.23.5",
-    "@babel/register": "^7.22.15",
-    "babel-core": "^4.7.16",
-    "babel-preset-env": "^1.7.0"
+    "@babel/register": "^7.22.15"
   }
 }
