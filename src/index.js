@@ -1,57 +1,41 @@
-// part b
-import stars from "./stars.js";
+//part a
 
-const spelledDigits = {
-  one: "1",
-  two: "2",
-  three: "3",
-  four: "4",
-  five: "5",
-  six: "6",
-  seven: "7",
-  eight: "8",
-  nine: "9",
-};
+import games from "./games.js";
 
-function translateSpelled(input) {
-  return input.reduce((sum, line) => {
-    const first = line.match(/\d/)[0];
-    const last = [...line].reverse().join("").match(/\d/)[0];
-    return sum + parseInt(first + last, 10);
-  }, 0);
-}
+function idTotals(games, allCubes) {
+  let sum = 0;
 
-function fix(line) {
-  let fixedLine = line.replace(
-    /(one|two|three|four|five|six|seven|eight|nine)/g,
-    (match) => {
-      return spelledDigits[match] + match[match.length - 1];
+  games.forEach((game) => {
+    const gameParts = game.split(": ");
+    const gameID = parseInt(gameParts[0].split(" ")[1]);
+    const sets = gameParts[1].split("; ");
+
+    let isPossible = true;
+    for (const set of sets) {
+      const cubeCounts = { red: 0, green: 0, blue: 0 };
+      set.split(", ").forEach((cube) => {
+        const [count, color] = cube.split(" ");
+        cubeCounts[color] += parseInt(count);
+      });
+
+      if (
+        cubeCounts.red > allCubes.red ||
+        cubeCounts.green > allCubes.green ||
+        cubeCounts.blue > allCubes.blue
+      ) {
+        isPossible = false;
+        break;
+      }
     }
-  );
 
-  return fixedLine.replace(
-    /(one|two|three|four|five|six|seven|eight|nine)/g,
-    (match) => {
-      return spelledDigits[match];
+    if (isPossible) {
+      sum += gameID;
     }
-  );
+  });
+
+  return sum;
 }
 
-function addTheRest(input) {
-  return translateSpelled(input.map((line) => fix(line)));
-}
-
-console.log(addTheRest(stars));
-
-// // part a
-
-// function sumCalibrationValues(documentArray) {
-//     return documentArray.map(line => {
-//         const firstDigit = line.match(/\d/)?.[0];
-//         const lastDigit = line.match(/\d(?=[^\d]*$)/)?.[0];
-//         return firstDigit && lastDigit ? parseInt(firstDigit + lastDigit, 10) : 0;
-//     }).reduce((acc, val) => acc + val, 0);
-// }
-
-// const totalSum = sumCalibrationValues(stars);
-// console.log(totalSum);
+const allCubes = { red: 12, green: 13, blue: 14 };
+const result = idTotals(games, allCubes);
+console.log(result);
